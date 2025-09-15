@@ -1,0 +1,182 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Main background */
+.main_box {
+  background: url(SideBarMenuCameraPhoto.jpg);
+  height: 100vh;
+  background-size: cover;
+  position: relative;
+}
+
+/* Dark overlay (hidden by default) */
+.main_box::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* Show overlay when sidebar is open */
+#check:checked ~ .main_box::after {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Open/close buttons */
+.btn_one i,
+.btn_two i {
+  font-weight: 700;
+  position: absolute;
+  line-height: 60px;
+  cursor: pointer;
+  background: linear-gradient(45deg, #00eaff, #ff00cc);
+  transition: transform 0.4s, all 0.3s linear;
+}
+
+.btn_one i {
+  color: white;
+  font-size: 30px;
+  left: 16px;
+}
+
+.btn_two i {
+  color: gray;
+  font-size: 25px;
+  left: 275px;
+  opacity: 0;
+}
+
+.btn_one i:hover,
+.btn_two i:hover {
+  transform: rotate(90deg) scale(1.2);
+}
+
+/* Sidebar */
+.sidebar_menu {
+  position: fixed;
+  left: -300px;
+  height: 100vh;
+  width: 300px;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+  transition: all 0.3s linear;
+  z-index: 1001; /* above overlay */
+}
+
+/* Sidebar logo */
+.sidebar_menu .logo {
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+.sidebar_menu .logo a {
+  position: absolute;
+  left: 50px;
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+/* Sidebar menu */
+.sidebar_menu .menu {
+  position: absolute;
+  width: 100%;
+  top: 80px;
+}
+
+.sidebar_menu .menu li {
+  margin-top: 6px;
+  padding: 14px 20px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.4s ease;
+}
+
+.sidebar_menu .menu a,
+.sidebar_menu .menu i {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.sidebar_menu .menu i {
+  padding-right: 8px;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+/* Menu hover */
+.sidebar_menu .menu li:hover {
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+}
+
+.sidebar_menu .menu li:hover i {
+  color: #00eaff;
+  text-shadow: 0 0 8px #00eaff;
+}
+
+/* Animate menu items one by one */
+#check:checked ~ .sidebar_menu .menu li {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.sidebar_menu .menu li:nth-child(1) { transition-delay: 0.3s; }
+.sidebar_menu .menu li:nth-child(2) { transition-delay: 0.4s; }
+.sidebar_menu .menu li:nth-child(3) { transition-delay: 0.5s; }
+.sidebar_menu .menu li:nth-child(4) { transition-delay: 0.6s; }
+.sidebar_menu .menu li:nth-child(5) { transition-delay: 0.7s; }
+.sidebar_menu .menu li:nth-child(6) { transition-delay: 0.8s; }
+.sidebar_menu .menu li:nth-child(7) { transition-delay: 0.9s; }
+
+/* Sidebar social media */
+.sidebar_menu .social_media {
+  position: absolute;
+  left: 25%;
+  bottom: 50px;
+}
+
+.sidebar_menu .social_media i {
+  color: white;
+  opacity: 0.5;
+  padding: 0.5px;
+  transition: all 0.4s ease;
+}
+
+.sidebar_menu .social_media i:hover {
+  opacity: 1;
+  transform: scale(1.2) rotate(10deg);
+  color: #ff9800;
+}
+
+/* Checkbox hack */
+#check {
+  display: none;
+}
+
+#check:checked ~ .sidebar_menu {
+  left: 0;
+}
+
+#check:checked ~ .btn_one i {
+  opacity: 0;
+}
+
+#check:checked ~ .sidebar_menu .btn_two i {
+  opacity: 1;
+}
